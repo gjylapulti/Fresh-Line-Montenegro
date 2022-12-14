@@ -9,7 +9,11 @@
 }
 
 body{
-  background: #fece0c;
+  background-image: url(pictures/leaves1.png);
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  object-fit: cover;
 }
 
 .wrapper{
@@ -22,7 +26,7 @@ body{
   background: #fff;
   padding: 25px;
   border-radius: 5px;
-  box-shadow: 4px 4px 2px rgba(254,236,164,1); 
+  box-shadow: 4px 4px 2px lavender; 
 }
 
 .wrapper h2{
@@ -55,7 +59,7 @@ body{
   padding: 10px;
   text-align: center;
   width: 100%;
-  background: #fece0c;
+  background: lavender;
   color: #332902;
   text-transform: uppercase;
   letter-spacing: 5px;
