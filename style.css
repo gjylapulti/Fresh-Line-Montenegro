@@ -11,6 +11,8 @@ body{
     min-height: 100vh;
 }
 
+/*Navigaton starts*/
+
 header{
     position:fixed;
     top:0;
@@ -129,6 +131,9 @@ header label{
     
 }
 
+/*Navigaton ends*/
+
+
 .home{
     display: flex;
     align-items: center;
@@ -216,6 +221,8 @@ section{
         flex-direction: column;
     }
 }
+
+/*footer starts*/
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 *{
@@ -389,3 +396,5 @@ footer{
     margin: 5px 0;
   }
 }
+
+/*footer ends*/
