@@ -23,13 +23,13 @@ pwShowHide.forEach(eyeIcon => {
         })
     });
 
-    signUp.addEventListener("click", function () {
+    /*signUp.addEventListener("click", function () {
         container.classList.add("active");
     });
 
     login.addEventListener("click", function() {
         container.classList.remove("active");
-    });
+    });*/
 
     //Validimi i formes
 
@@ -56,7 +56,7 @@ pwShowHide.forEach(eyeIcon => {
         let name = document.forms.signUp.name.value;
         let email = document.forms.signUpFrom.email.value;
         let password = document.forms.signUpFrom.password.value;
-        let confirmpsw = document.forms.signUpFrom.confirmpsw.value;
+        let confirmpsw = document.forms.signUpFrom.confirmpassword.value;
 
         let regEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         let regName = /\d+/g;

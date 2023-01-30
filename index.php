@@ -1,3 +1,15 @@
+<?php
+require 'function.php';
+
+$select = new Select();
+
+if(!empty($_SESSION["id"])){
+  $user = $select->selectUserById($_SESSION["id"]);
+}
+else{
+  header("Location: login.php");
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +47,7 @@
                 </ul>
             </li>
             <li><a href="contactus.html">Contact Us</a></li>
-            <li><a href="login.html">Join Us</a></li>
+            <li><a href="<?php echo login.php; ?>">Join Us</a></li>
 
         </ul>
     </nav>

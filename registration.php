@@ -1,3 +1,29 @@
+<?php
+
+require 'function.php';
+
+$register  = new Register();
+
+if(isset($_POST["submit"])){
+    $result = $register->registration($_POST["name"], $_POST["username"], $_POST["email"], $_POST["password"], $_POST["confirmpassword"]);
+  
+    if($result == 1){
+      echo
+      "<script> alert('Registration Successful'); </script>";
+    }
+    elseif($result == 10){
+      echo
+      "<script> alert('Username or Email Has Already Taken'); </script>";
+    }
+    elseif($result == 100){
+      echo
+      "<script> alert('Password Does Not Match'); </script>";
+    }
+  }
+
+
+?>
+
 <!DOCTYPE html> 
 
 <head>
@@ -44,37 +70,16 @@
     </header>
 
     
-        <div class="container">
-            <div class="forms">
-                <div class="form login">
-                    <span class="title">Login</span>
-
-                    <form action="" name="loginForm" onsubmit="loginvalidation()">
-                        <div class="input-field">
-                        <input type="" name="email" placeholder="Enter your email">
-                        <i class="fa-solid fa-envelope icon"></i>
-                        </div>
-                        <div class="input-field">
-                            <input type="text" name="password" class="password" placeholder="Enter your password">
-                            <i class="fa-solid fa-lock icon"></i>
-                            <i class="fa-solid fa-eye-slash showhidepw"></i>
-                        </div>
-                     <div class="input-field button">
-                        <input type="submit" value="Login">
-                     </div>
-                    </form>
-                    <div class="login-signup">
-                        <span class="text">Not a member?</span>
-                        <a href="#" class="text signup-link">Sign Up</a>
-                    </div>
-                    </div>
-
                     <!--Register -->
                     <div class="form signup" onsubmit="signUpValidation()">
                         <span class="title">Registration</span>
-                        <form name="signUpform">
+                        <form name="signUpform" class="" action="" method="post" autocomplete="off">
                             <div class="input-field">
                                 <input type="text" name="name" placeholder="Enter your Name">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="input-field">
+                                <input type="text" name="username" placeholder="Enter your Username">
                                 <i class="fa-solid fa-user"></i>
                             </div>
                             <div class="input-field">
@@ -87,18 +92,18 @@
                                 <i class="fa-solid fa-eye-slash showhidepw"></i>
                             </div>
                             <div class="input-field">
-                                <input type="password" name="confirmpwd" class="password" placeholder="Confirm password">
+                                <input type="password" name="confirmpassword" class="password" placeholder="Confirm password">
                                 <i class="fa-solid fa-lock icon"></i>
                                 <i class="fa-solid fa-eye-slash showhidepw"></i>
 
                             </div>
                             <div class="input-field button">
-                                <input type="submit" value="signup">
+                                <input type="submit" value="signup" name="submit">
                             </div>
                         </form>
                         <div class="login-signup">
                             <span class="text">Already a member?
-                                <a href="#" class="text login-link">Login Now</a>
+                                <a href="login.php" class="text login-link">Login Now</a>
                             </span>
                         </div>
 
