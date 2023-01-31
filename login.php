@@ -1,7 +1,7 @@
 <?php
 require 'function.php';
 
-if(!empty($_SESSION["id"])){
+if(empty($_SESSION["id"])){
   header("Location: index.php");
 }
 
@@ -25,7 +25,6 @@ if(isset($_POST["submit"])){
   }
 }
 
-
 ?>
 
 
@@ -36,9 +35,9 @@ if(isset($_POST["submit"])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="css/login.css">
     <title>Log In | Register</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
@@ -68,7 +67,7 @@ if(isset($_POST["submit"])){
                     </ul>
                 </li>
                 <li><a href="contactus.html">Contact Us</a></li>
-                <li><a href="login.html">Join Us</a></li>
+                <li><a href="login.php">Join Us</a></li>
     
             </ul>
         </nav>
@@ -78,10 +77,10 @@ if(isset($_POST["submit"])){
         <div class="container">
             <div class="forms">
 
-                <div class="form login">
+                <div class="form login" onsubmit="loginvalidation()">
                     <span class="title">Login</span>
 
-                    <form action="" name="loginForm" onsubmit="loginvalidation()">
+                    <form action="" name="loginForm"  method="POST"">
                         <div class="input-field">
                         <input type="" name="usernameemail" placeholder="Enter your username or email" required value="">
                         <i class="fa-solid fa-envelope icon"></i>
@@ -92,7 +91,7 @@ if(isset($_POST["submit"])){
                             <i class="fa-solid fa-eye-slash showhidepw"></i>
                         </div>
                      <div class="input-field button">
-                        <input type="submit" value="Login" name="submit">
+                        <input type="submit" value="submit" name="submit">
                      </div>
                     </form>
                     <div class="login-signup">
@@ -107,7 +106,7 @@ if(isset($_POST["submit"])){
             </div>
         </div>
 
-    <script src="login.js"></script>
+    <script src="js/login.js"></script>
 
 </body>
 

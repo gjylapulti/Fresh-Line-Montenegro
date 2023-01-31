@@ -18,8 +18,8 @@ else{
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="slider.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/slider.css">
     <title>Fresh Line Montenegro</title>
 </head>
 <body>
@@ -47,7 +47,7 @@ else{
                 </ul>
             </li>
             <li><a href="contactus.html">Contact Us</a></li>
-            <li><a href="<?php echo login.php; ?>">Join Us</a></li>
+            <li><a href="login.php">Join Us</a></li>
 
         </ul>
     </nav>
@@ -174,7 +174,7 @@ else{
         </div>
     </div>
 
-    <script src="slider.js"></script>
+    <script src="js/slider.js"></script>
 
 
 <footer>

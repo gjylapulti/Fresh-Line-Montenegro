@@ -1,11 +1,6 @@
 <?php
 session_start();
 
-if(!empty($_SESSION["id"])){
-    header("Location: index.php");
-  }
-  
-
 class Connection{
   public $host = "localhost";
   public $user = "root";
@@ -41,36 +36,36 @@ class Register extends Connection{
 }
 
 class Login extends Connection{
-    public $id;
-    public function login($usernameemail, $password){
-      $result = mysqli_query($this->conn, "SELECT * FROM tb_user WHERE username = '$usernameemail' OR email = '$usernameemail'");
-      $row = mysqli_fetch_assoc($result);
-  
-      if(mysqli_num_rows($result) > 0){
-        if($password == $row["password"]){
-          $this->id = $row["id"];
-          return 1;
-          // Login successful
-        }
-        else{
-          return 10;
-          // Wrong password
-        }
+  public $id;
+  public function login($usernameemail, $password){
+    $result = mysqli_query($this->conn, "SELECT * FROM tbl_user WHERE username = '$usernameemail' OR email = '$usernameemail'");
+    $row = mysqli_fetch_assoc($result);
+
+    if(mysqli_num_rows($result) > 0){
+      if($password == $row["password"]){
+        $this->id = $row["id"];
+        return 1;
+        // Login successful
       }
       else{
-        return 100;
-        // User not registered
+        return 10;
+        // Wrong password
       }
     }
-  
-    public function idUser(){
-      return $this->id;
+    else{
+      return 100;
+      // User not registered
     }
   }
 
-  class Select extends Connection{
-    public function selectUserById($id){
-      $result = mysqli_query($this->conn, "SELECT * FROM tb_user WHERE id = $id");
-      return mysqli_fetch_assoc($result);
-    }
+  public function idUser(){
+    return $this->id;
   }
+}
+
+class Select extends Connection{
+  public function selectUserById($id){
+    $result = mysqli_query($this->conn, "SELECT * FROM tbl_user WHERE id = $id");
+    return mysqli_fetch_assoc($result);
+  }
+}
