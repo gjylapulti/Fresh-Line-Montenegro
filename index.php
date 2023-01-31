@@ -48,10 +48,13 @@ else{
             </li>
             <li><a href="contactus.html">Contact Us</a></li>
             <li><a href="login.php">Join Us</a></li>
-
+            <li>  
+    <?php echo $user["name"]; ?>
+    <a href="logout.php">Logout</a></li>
         </ul>
     </nav>
 </header>
+
 <section class="home" id="home">
 
     <div class="content">
@@ -233,3 +236,4 @@ else{
   </footer>
 </body>
 </html>
+
