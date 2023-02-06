@@ -1,15 +1,4 @@
-<?php
-require 'function.php';
 
-$select = new Select();
-
-if(!empty($_SESSION["id"])){
-  $user = $select->selectUserById($_SESSION["id"]);
-}
-else{
-  header("Location: login.php");
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +38,7 @@ else{
             <li><a href="contactus.html">Contact Us</a></li>
             <li><a href="login.php">Join Us</a></li>
             <li>  
-    <?php echo $user["name"]; ?>
+    
     <a href="logout.php">Logout</a></li>
         </ul>
     </nav>
@@ -90,91 +79,14 @@ else{
 </section>
 
 
-    <div class="content-slider">
-        <div class="slider-container">
-            <div class="slide">
-                <div class="card">
-                    <img src="pictures/Lemon Pie.jpg" alt="">
-                    <div>
-                        <h2>Slide 1</h2>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="slide">
-                <div class="card">
-                    <img src="pictures/Praline Nuts.jpg"">
-                    <div>
-                        <h2>Slide 2</h2>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="slide">
-                <div class="card">
-                    <img src="pictures/Pomegranate cranberry.jpg" alt="">
-                    <div>
-                        <h2>Slide 3</h2>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="slide">
-                <div class="card">
-                    <img src="pictures/vanilla caramel.jpg" alt="">
-                    <div>
-                        <h2>Slide 4</h2>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide">
-                <div class="card">
-                    <img src="pictures/Poseidon.jpg" alt="">
-                    <div>
-                        <h2>Slide 5</h2>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide">
-                <div class="card">
-                    <img src="pictures/olympianzeus.jpg" alt="">
-                    <div>
-                        <h2>Slide 6</h2>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide">
-                <div class="card">
-                    <img src="pictures/Raspberry cheasrcake.jpg" alt="">
-                    <div>
-                        <h2>Slide 7</h2>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-           
-            <button class="arrow-left">
-              <i class="fas fa-arrow-left"></i>
-          </button>
-          <button class="arrow-right">
-              <i class="fas fa-arrow-right"></i>
-          </button>
+<div class="slider-container">
+      <div id="slider" class="slider">
+        <div class="slider-item active"><img src="pictures/Praline Nuts.jpg" alt="" class="img-fluid" width="900px" height="600px"></div>
+        <div class="slider-item"><img src="pictures/vanilla caramel.jpg" alt="" class="img-fluid" width="900px" height="600px"></div>
+        <div class="slider-item"><img src="pictures/wood pepper.jpg" alt="" class="img-fluid" width="900px" height="600px"></div>
+        <ul id="dots" class="list-inline dots"></ul>
+      </div>
       
-        </div>
     </div>
 
     <script src="js/slider.js"></script>
