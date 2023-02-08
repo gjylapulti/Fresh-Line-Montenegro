@@ -124,9 +124,8 @@
                     {
                         //Image available
                         
-                    //Auto rename or image
-                    /*Get extension (jpg png ejt) */
-                    $ext = end(explode('.', $image_name));
+                        $parts = explode('.', $image_name);
+                        $ext = end($parts);
 
                     //Rename the image
                     $image_name = "Food_Category_".rand(000,999).'.'.$ext;
