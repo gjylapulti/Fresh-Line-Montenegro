@@ -56,7 +56,7 @@
             $count = mysqli_num_rows($res);
 
             if ($count > 0) {
-                
+
                 while ($row = mysqli_fetch_assoc($res)) {
                     $id = $row['id'];
                     $title = $row['title'];
@@ -80,7 +80,7 @@
                             <?php
                             //check whether we have image or not
                             if ($image_name == "") {
-                        
+
                                 echo "<div class='error'>Image not added </div>";
                             } else {
                                 //we have image,display image
@@ -107,7 +107,7 @@
                     <?php
                 }
             } else {
-    
+
                 echo "<tr><td colspan='7' class='error'> product not Added Yet. </td></tr>";
             }
             ?>

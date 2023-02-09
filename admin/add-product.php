@@ -50,16 +50,21 @@
                         <select name="category">
 
                             <?php
+                            //Create PHP code to display categories from database
+                            //1.Create sql to get all active categories from database
                             $sql = "SELECT * FROM tbl_category WHERE active='Yes'";
 
+                            //executing query
                             $res = mysqli_query($conn, $sql);
 
+                            //count rows to check whether we have categories or not
                             $count = mysqli_num_rows($res);
 
                             //if count is greates than 0 we have categories else we do not have cateogires
                             if ($count > 0) {
                                 //We have categories
                                 while ($row = mysqli_fetch_assoc($res)) {
+                                    //get the details of category
                                     $id = $row['id'];
                                     $title = $row['title'];
                                     ?>
@@ -68,11 +73,13 @@
                                     <?php
                                 }
                             } else {
+                                //We do not have categories
                                 ?>
                                 <option value="0">No Category Found</option>
                                 <?php
                             }
 
+                            //2.Display on Dropdown
                             ?>
 
                         </select>
@@ -106,13 +113,16 @@
         </form>
 
         <?php
-        if (isset($_POST['submit'])) 
+        //Check whether the button is clicked or not
+        if (isset($_POST['submit'])) {
+            //add product in database
             //1.Get the data from form
             $title = $_POST['title'];
             $description = $_POST['description'];
             $price = $_POST['price'];
             $category = $_POST['category'];
 
+            //check whether radio button for featured and active are checked or not
             if (isset($_POST['featured'])) {
                 $featured = $_POST['featured'];
             } else {
@@ -142,8 +152,10 @@
                     // B) upload the image
                     //Get the src path and destination path
         
+                    //Source path is the current location of the image
                     $src = $_FILES['image']['tmp_name'];
 
+                    //destination path for the image to be uploaded
                     $dst = "../pictures/product/" . $image_name;
 
                     //finally upload the product image
@@ -151,25 +163,26 @@
 
                     //check whether image uploaded or not
                     if ($upload == false) {
-                    
+                        //failed to upload the image
         
-                        
+                        //redirect to add product page with error message
                         $_SESSION['upload'] = "<div class='error'>Failed to Upload image.</div>";
                         header('location:' . SITEURL . 'admin/add-product.php');
 
-                    
+                        //stop the process
                         die();
                     }
                 }
             } else {
-                $image_name = ""; 
+                $image_name = ""; //setting deefault value as blank
             }
 
 
             //3.Insert into database
         
 
-            
+            //Create sql query to save or add product
+            //for numerical we do not need to pass value inside quotes 
             $sql2 = "INSERT INTO tbl_product SET
                     title = '$title',
                     description ='$description',
