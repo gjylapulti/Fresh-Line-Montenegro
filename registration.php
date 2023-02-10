@@ -1,100 +1,35 @@
-
-
 <?php
 
+include 'config/constants.php';
 
-session_start();
-include('server/connection.php');
+if (isset($_POST['submit'])) {
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
+    $cpass = mysqli_real_escape_string($conn, md5($_POST['cpassword']));
+    $user_type = $_POST['user_type'];
 
+    $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email' AND password = '$pass'") or die('query failed');
 
-
-//if user has already registered, then take user to account page            
-if(isset($_SESSION['logged_in'])){
-  header('location: index.php');
-  exit;
-}
-
-
-
-if(isset($_POST['registration'])){
-
-  $name = $_POST['name'];
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-  $confirmPassword = $_POST['confirmPassword'];
-
-  //if passwords dont match
-  if($password !== $confirmPassword){
-    header('location: registration.php?error=passwords dont match');
-  
-
-  //if passwod is less than 6 char
-  }else if(strlen($password) < 6){
-    header('location: registration.php?error=password must be at least 6 charachters');
-  
-
-  //if there is no error
-  }else{
-                //check whether there is a user with this email or not
-                $stmt1= $conn->prepare("SELECT count(*) FROM users where user_email=?");
-                $stmt1->bind_param('s',$email);
-                $stmt1->execute();
-                $stmt1->bind_result($num_rows);
-                $stmt1->store_result();
-                $stmt1->fetch();
-
-                //if there is a user already registrationed with this email
-                if($num_rows != 0){
-                  header('location: registration.php?error=user with this eamil already exists');
-                  
-
-                  //if no user registed with this email before
-                }else{
-                        //create a new user
-                        $stmt = $conn->prepare("INSERT INTO users (user_name,user_email,user_password) 
-                        VALUES (?,?,?)");
-
-                        $stmt->bind_param('sss',$name,$email,md5($password));
-
-                  
-
-                        //if account was created successfully
-                        if($stmt->execute()){
-                              $user_id = $stmt->insert_id;
-                              $_SESSION['user_id'] = $user_id;
-                              $_SESSION['user_email'] = $email;
-                              $_SESSION['user_name'] = $name;
-                              $_SESSION['logged_in'] = true;
-                              header('location: index.php?registration_success=You registrationed successfully');
-
-                          //account could not be created
-                        }else{
-
-                             header('location: registration.php?error=could not create an account at the moment');
-
-                        }
-
-
-
-                }
-
-              }
-
-
-
-
-
+    if (mysqli_num_rows($select_users) > 0) {
+        $message[] = 'User already exists';
+    } else {
+        if ($pass != $cpass) {
+            $message[] = 'confirm password not matched';
+        } else {
+            mysqli_query($conn, "INSERT INTO `users`(name,email,password,user_type) VALUES('$name', '$email', '$cpass', '$user_type')") or die('query failed');
+            $message[] = 'registered succesfully';
+            header('location:login.php');
+        }
+    }
 
 
 }
-
-
-
-
 
 ?>
 
-<!DOCTYPE html> 
+
+<!DOCTYPE html>
 
 <head>
     <meta charset="UTF-8">
@@ -109,12 +44,13 @@ if(isset($_POST['registration'])){
 
 <body>
 
+
     <header>
         <a href="#" class="logo"><img src="pictures/logo.png" class="logo-pic"></a>
-    
+
         <input type="checkbox" id="menu-bar">
         <label for="menu-bar">Menu </label>
-    
+
         <nav class="navbar">
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -124,63 +60,95 @@ if(isset($_POST['registration'])){
                     <ul>
                         <li><a href="">Gift Offers & Promo Sets</a></li>
                         <li><a href="">Collections</a>
-                           <ul>
-                            <li><a href="">Royal Beauty</a></li>
-                            <li><a href="">Spa Elixirs</a></li>
-                            <li><a href="">Fresh Bar</a></li>
-                        </ul> 
+                            <ul>
+                                <li><a href="">Royal Beauty</a></li>
+                                <li><a href="">Spa Elixirs</a></li>
+                                <li><a href="">Fresh Bar</a></li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
                 <li><a href="contactus.html">Contact Us</a></li>
                 <li><a href="login.php">Join Us</a></li>
-    
+
             </ul>
         </nav>
     </header>
 
-    
-                    <!-- -->
-                    <script src="js/login.js"></script>
 
-                    <div class="form signup" onsubmit="signUpValidation()" method="POST" action="registration.php">
-                        
-                        <form name="signUpform" class="" action="" method="post" autocomplete="off">
-                        <p style="color: red;"><?php if(isset($_GET['error'])){echo $_GET['error']; }?></p>    
-                        <div class="input-field">
-                                <input type="text" name="name" placeholder="Enter your Name" required>
-                                <i class="fa-solid fa-user"></i>
-                            </div>
-                
-                            <div class="input-field">
-                                <input type="text" name="email" placeholder="Enter your email" required>
-                                <i class="fa-solid fa-envelope"></i>
-                            </div>
-                            <div class="input-field">
-                                <input type="password" name="password" placeholder="Create your password" class="password" required>
-                                <i class="fa-solid fa-lock icon"></i>
-                                <i class="fa-solid fa-eye-slash showhidepw"></i>
-                            </div>
-                            <div class="input-field">
-                                <input type="password" name="confirmPassword" class="password" placeholder="Confirm password" required>
-                                <i class="fa-solid fa-lock icon"></i>
-                                <i class="fa-solid fa-eye-slash showhidepw"></i>
+    <!-- -->
+    <script src="js/login.js"></script>
 
-                            </div>
-                            <div class="input-field button">
-                                <input type="submit" value="submit" name="register">Submit
-                            </div>
-                        </form>
-                        <div class="login-signup">
-                            <span class="text">Already a member?
-                                <a href="login.php" class="text login-link">Login Now</a>
-                            </span>
-                        </div>
+    <div class="form signup" style="margin-top:18%;">
+        <h3 style="text-align:center; text-decoration:underline; font-size:30px;">Register</h3>
 
-                    
-                </div>
+        <form name="signUpform" class="" action="" method="post" autocomplete="off" onsubmit="signUpValidation()">
+
+            <div class="input-field">
+                <input type="text" name="name" placeholder="Enter your Name" required>
+                <i class="fa-solid fa-user"></i>
             </div>
+
+            <div class="input-field">
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="input-field">
+                <input type="password" name="password" placeholder="Create your password" class="password" required>
+                <i class="fa-solid fa-lock icon"></i>
+                <i class="fa-solid fa-eye-slash showhidepw"></i>
+            </div>
+            <div class="input-field">
+                <input type="password" name="cpassword" class="password" placeholder="Confirm password" required>
+                <i class="fa-solid fa-lock icon"></i>
+                <i class="fa-solid fa-eye-slash showhidepw"></i>
+
+            </div>
+            <div class="input-field">
+                <select name="user_type"
+                    style="width:100%; height:100%; text-align:center; font-size:15px; border: 2px solid grey;">
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <style>
+                .message {
+                    font-size: 15px;
+                    text-align: center;
+                    margin-top: 15px;
+                    color: red;
+                }
+            </style>
+
+            <?php
+            if (isset($message)) {
+                foreach ($message as $message) {
+                    echo '<div class="message">
+        <span>' . $message . '</span>
+    </div>
+     ';
+                }
+            }
+            ?>
+
+            <div class="input-field button">
+                <input type="submit" value="register now" name="submit">Submit
+            </div>
+        </form>
+
+
+
+
+        <div class="login-signup">
+            <span class="text">Already a member?
+                <a href="login.php" class="text login-link">Login Now</a>
+            </span>
         </div>
+
+
+    </div>
+    </div>
+    </div>
 
 
 </body>
