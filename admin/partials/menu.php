@@ -22,7 +22,7 @@ include('../config/constants.php');
                 <li><a href="manage-category.php">Category</a></li>
                 <li><a href="manage-product.php">Product</a></li>
                 <li><a href="">Order</a></li>
-                <li><a href="">Logout</a></li>
+                <li><a href="../logout.php">Logout</a></li>
             </ul>
         </div>
     </div>

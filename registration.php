@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
 <body>
 
 
-    <!--<header>
+    <header>
         <a href="#" class="logo"><img src="pictures/logo.png" class="logo-pic"></a>
 
         <input type="checkbox" id="menu-bar">
@@ -76,7 +76,7 @@ if (isset($_POST['submit'])) {
             </li>
             </ul>
         </nav>
-    </header>-->
+    </header>
 
 
     <!-- -->

@@ -22,7 +22,7 @@
             }
         }
 
-        Delete product from db
+        
         $sql = "DELETE FROM tbl_product WHERE id=$id";
 
         //execute query
