@@ -21,8 +21,8 @@
         <nav class="navbar">
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="facecare.html">Face Care</a></li>
-                <li><a href="haircare.html">Hair Care</a></li>
+                <li><a href="facecare.php">Face Care</a></li>
+                <li><a href="haircare.php">Hair Care</a></li>
                 <li><a href="">Body Care</a>
                     <ul>
                         <li><a href="">Gift Offers & Promo Sets</a></li>
@@ -35,9 +35,12 @@
                         </li>
                     </ul>
                 </li>
-                <li><a href="contactus.html">Contact Us</a></li>
-                <li><a href="login.html">Join Us</a></li>
-    
+                <li><a href="contactus.php">Contact Us</a></li>
+                <li><a href="login.php">Join Us</a></li>
+                <li>
+
+<a href="logout.php">Logout</a>
+</li>
             </ul>
         </nav>
     </header>

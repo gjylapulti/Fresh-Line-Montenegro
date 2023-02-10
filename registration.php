@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
 <body>
 
 
-    <header>
+    <!--<header>
         <a href="#" class="logo"><img src="pictures/logo.png" class="logo-pic"></a>
 
         <input type="checkbox" id="menu-bar">
@@ -53,9 +53,9 @@ if (isset($_POST['submit'])) {
 
         <nav class="navbar">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="">Face Care</a></li>
-                <li><a href="">Hair Care</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="facecare.php">Face Care</a></li>
+                <li><a href="haircare.php">Hair Care</a></li>
                 <li><a href="">Body Care</a>
                     <ul>
                         <li><a href="">Gift Offers & Promo Sets</a></li>
@@ -68,18 +68,21 @@ if (isset($_POST['submit'])) {
                         </li>
                     </ul>
                 </li>
-                <li><a href="contactus.html">Contact Us</a></li>
+                <li><a href="contactus.php">Contact Us</a></li>
                 <li><a href="login.php">Join Us</a></li>
+                <li>
 
+            <a href="logout.php">Logout</a>
+            </li>
             </ul>
         </nav>
-    </header>
+    </header>-->
 
 
     <!-- -->
     <script src="js/login.js"></script>
 
-    <div class="form signup" style="margin-top:18%;">
+    <div class="form signup" style="margin-top:30%;">
         <h3 style="text-align:center; text-decoration:underline; font-size:30px;">Register</h3>
 
         <form name="signUpform" class="" action="" method="post" autocomplete="off" onsubmit="signUpValidation()">

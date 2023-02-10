@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
             $_SESSION['admin_name'] = $row['name'];
             $_SESSION['admin_email'] = $row['email'];
             $_SESSION['admin_id'] = $row['id'];
-            header('location:index.php');
+            header('location:admin/index.php');
 
         } elseif ($row['user_type'] == 'user') {
             $_SESSION['user_name'] = $row['name'];
@@ -65,8 +65,8 @@ if (isset($_POST['submit'])) {
         <nav class="navbar">
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="">Face Care</a></li>
-                <li><a href="">Hair Care</a></li>
+                <li><a href="facecare.php">Face Care</a></li>
+                <li><a href="haircare.php">Hair Care</a></li>
                 <li><a href="">Body Care</a>
                     <ul>
                         <li><a href="">Gift Offers & Promo Sets</a></li>
@@ -79,9 +79,12 @@ if (isset($_POST['submit'])) {
                         </li>
                     </ul>
                 </li>
-                <li><a href="contactus.html">Contact Us</a></li>
+                <li><a href="contactus.php">Contact Us</a></li>
                 <li><a href="login.php">Join Us</a></li>
+                <li>
 
+                <a href="logout.php">Logout</a>
+                </li>
             </ul>
         </nav>
     </header>

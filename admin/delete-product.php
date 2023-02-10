@@ -1,53 +1,49 @@
 <?php
     include('../config/constants.php');
-
-    // Check whether the id and image_name value is set or not
-    if(isset($_GET['id']) AND isset($_GET['image_name']))
+    if(isset($_GET['id']) && isset($_GET['image_name']))
     {
-        //1.Get value 
+
         $id = $_GET['id'];
         $image_name = $_GET['image_name'];
-
-        //2.Remove the physical image file if is available
+        
+        
         if($image_name != "")
         {
-            
-            $path = "../pictures/category/".$image_name;
-
-            //unlink removes file
+            $path = "../pictures/product/".$image_name;
             $remove = unlink($path);
 
             if($remove == false)
             {
-                $_SESSION['remove'] = "<div class='error'>Failed to remove Category Image</div>";
-                header('location:'.SITEURL.'admin/manage-category.php');
+                $_SESSION['upload'] = "<div class='error'>Failed to remove image file</div>";
+            
+                header('location:'.SITEURL.'admin/manage-product.php');
+            
+                die();
             }
         }
 
-        //Delete Data from Database
-        $sql = "DELETE FROM tbl_category WHERE id=$id";
+        Delete product from db
+        $sql = "DELETE FROM tbl_product WHERE id=$id";
 
+        //execute query
         $res = mysqli_query($conn, $sql);
 
-        if($res==true)
+        if($res == true)
         {
-            $_SESSION['delete'] = "<div class='success'>Category deleted successfully</div>";
-            header('location:'.SITEURL.'admin/manage-category.php');
+            $_SESSION['delete'] = "<div class='success'>product Deleted Successfully</div";
+            header('location:'.SITEURL.'admin/manage-product.php');
         }
         else
         {
-            $_SESSION['delete'] = "<div class='error'>Failed to delete category</div>";
-            header('location:'.SITEURL.'admin/manage-category.php');
+            $_SESSION['delete'] = "<div class='error'>Failed to delete product</div";
+            header('location:'.SITEURL.'admin/manage-product.php');
         }
 
-
-
+        
     }
     else
     {
-        header('location:'.SITEURL.'admin/manage-category.php');
+        
+       header('location:'.SITEURL.'admin/manage-product.php');
     }
-     
 ?>
-
-
