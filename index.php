@@ -94,8 +94,73 @@ if (!isset($user_id)) {
     </div>
   </section>
 
+  <!--Categories section starts-->
+  <section class="categories">
+    <div class="categories-container">
+      <h1 class="categories-text-center">Explore products</h1>
 
+      <?php
+
+      // display all the categories that are active
+      //sql query
+      $sql = "SELECT * FROM tbl_category  WHERE active ='Yes'";
+
+      $res = mysqli_query($conn, $sql);
+
+      //count rows
+      $count = mysqli_num_rows($res);
+
+      //check whether category is available or not
+      if ($count > 0) {
+        while ($row = mysqli_fetch_assoc($res)) {
+          $id = $row['id'];
+          $title = $row['title'];
+          $image_name = $row['image_name'];
+          ?>
+
+          <a href="<?php echo SITEURL; ?>category-products.php?category_id=<?php echo $id; ?>">
+            <div class="box-3 float-container">
+              <?php
+              if ($image_name == "") {
+                //image not available
+                echo "<div class='error>Image not found.</div>";
+              } else {
+                //image available
+                ?>
+                ` <a href="facecare.php"><img src="<?php echo SITEURL; ?>pictures/category/<?php echo $image_name; ?>"
+                    class="img-responsive img-curve">
+                </a>
+
+                <?php
+              }
+              ?>
+
+              <h3 class="categories-float-text categories-text-white">
+                <?php echo $title ?>
+              </h3>
+            </div>
+          </a>
+
+          <?php
+        }
+      } else {
+        //category not available
+        echo "<div class='error'>Category not found</div";
+      }
+      ?>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </section>
+  <!-- Categories Section Ends Here -->
+
+
+  <!--Categories section ends-->
+
+  <h1 style="text-align:center; font-size: 25px; margin-bottom:20px;">New Gift Ideas</h1>
   <div class="slider-container">
+
     <div id="slider" class="slider">
       <div class="slider-item active"><img src="pictures/Praline Nuts.jpg" alt="" class="img-fluid" width="900px"
           height="600px"></div>

@@ -1,5 +1,8 @@
+<?php include('config/constants.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,16 +11,17 @@
     <link rel="stylesheet" href="css/facecare.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
-    <title>Document</title>
+    <title>Face Care</title>
 </head>
+
 <body>
 
     <header>
         <a href="#" class="logo"><img src="pictures/logo.png" class="logo-pic"></a>
-    
+
         <input type="checkbox" id="menu-bar">
         <label for="menu-bar">Menu </label>
-    
+
         <nav class="navbar">
             <ul>
                 <li><a href="index.php">Home</a></li>
@@ -27,11 +31,11 @@
                     <ul>
                         <li><a href="">Gift Offers & Promo Sets</a></li>
                         <li><a href="">Collections</a>
-                           <ul>
-                            <li><a href="">Royal Beauty</a></li>
-                            <li><a href="">Spa Elixirs</a></li>
-                            <li><a href="">Fresh Bar</a></li>
-                        </ul> 
+                            <ul>
+                                <li><a href="">Royal Beauty</a></li>
+                                <li><a href="">Spa Elixirs</a></li>
+                                <li><a href="">Fresh Bar</a></li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
@@ -39,144 +43,88 @@
                 <li><a href="login.php">Join Us</a></li>
                 <li>
 
-<a href="logout.php">Logout</a>
-</li>
+                    <a href="logout.php">Logout</a>
+                </li>
             </ul>
         </nav>
     </header>
-    
+
     <div class="container">
-
-    
-
         <div class="products">
+
+            <?php
+
+            //getting products from database in the face category
             
-            <div class="product">
-                <div class="image">
-                    <img src="pictures/elixirorchidea.jpg" alt="">
-                </div>
-                <div class="namePrice">
-                    <h3>Elixir Orchidea</h3>
-                    <span>$ 15.99</span>
-                </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit..</p>
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <div class="buy">
-                    <button> Buy now </button>
-                </div>
-            </div>
+            $sql2 = "SELECT * FROM tbl_product WHERE category_id=16 LIMIT 6";
 
-            <div class="product">
-                <div class="image">
-                    <img src="pictures/elixirorchideanight.jpg" alt="">
-                </div>
-                <div class="namePrice">
-                    <h3>Elixir Orchidea Night</h3>
-                    <span>$ 120.99</span>
-                </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <div class="buy">
-                    <button> Buy now </button>
-                </div>
-            </div>
+            $res2 = mysqli_query($conn, $sql2);
 
-            <div class="product">
-                <div class="image">
-                    <img src="pictures/hera.jpg" alt="">
-                </div>
-                <div class="namePrice">
-                    <h3>Hera</h3>
-                    <span>$ 150.99</span>
-                </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-                <div class="buy">
-                    <button> Buy now </button>
-                </div>
-            </div>
+            $count2 = mysqli_num_rows($res2);
 
-            <div class="product">
-                <div class="image">
-                    <img src="pictures/hesperides.jpg" alt="">
-                </div>
-                <div class="namePrice">
-                    <h3>Hesperides</h3>
-                    <span>$ 20.99</span>
-                </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div><div class="buy">
-                    <button> Buy now </button>
-                </div>
-            </div>
+            if ($count2 > 0) {
+                //we have products
+                while ($row = mysqli_fetch_assoc($res2)) {
+                    $id = $row['id'];
+                    $title = $row['title'];
+                    $price = $row['price'];
+                    $description = $row['description'];
+                    $image_name = $row['image_name'];
+                    ?>
 
-            <div class="product">
-                <div class="image">
-                    <img src="pictures/hesperidesacne.jpg" alt="">
-                </div>
-                <div class="namePrice">
-                    <h3>Hesperides Acne</h3>
-                    <span>$ 20.99</span>
-                </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div><div class="buy">
-                    <button> Buy now </button>
-                </div>
-            </div>
+                    <div class="product">
+                        <div class="image">
+                            <!--checking if image vailable-->
+                            <?php
 
-            <div class="product">
-                <div class="image">
-                    <img src="pictures/nectar.jpg" alt="">
-                </div>
-                <div class="namePrice">
-                    <h3>Nectar</h3>
-                    <span>$ 20.99</span>
-                </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div><div class="buy">
-                    <button> Buy now </button>
-                </div>
-            </div>
+                            if ($image_name == "") {
+                                echo "<div class='error'>Image not available</div>";
+                            } else {
+                                ?>
+                                <img src="<?php echo SITEURL; ?>pictures/product/<?php echo $image_name; ?>" alt="">
+                                <?php
+                            }
+
+                            ?>
+                        </div>
+                        <div class="namePrice">
+                            <h3>
+                                <?php echo $title; ?>
+                            </h3>
+                            <span>
+                                <?php echo $price; ?>
+                            </span>
+                        </div>
+                        <p>
+                            <?php echo $description; ?>
+                        </p>
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                        <div class="buy">
+                            <button> Buy now </button>
+                        </div>
+                    </div>
+
+
+
+                    <?php
+                }
+            } else {
+                echo "<div class='error'>Products not available</div>";
+            }
+
+            ?>
+
 
 
         </div>
     </div>
 
 </body>
+
 </html>
