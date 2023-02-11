@@ -1,6 +1,6 @@
 <?php include('config/constants.php');
 
-if (!isset($_SESSION)) {
+/*if (!isset($_SESSION)) {
   session_start();
 }
 
@@ -8,7 +8,7 @@ $user_id = $_SESSION['user_id'];
 
 if (!isset($user_id)) {
   header('location:login.php');
-}
+}*/
 
 ?>
 
