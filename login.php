@@ -69,7 +69,7 @@ if (isset($_POST['submit'])) {
                 <li><a href="haircare.php">Hair Care</a></li>
                 <li><a href="">Body Care</a>
                     <ul>
-                        <li><a href="">Gift Offers & Promo Sets</a></li>
+                        <li><a href="giftoffers.php">Gift Offers & Promo Sets</a></li>
                         <li><a href="">Collections</a>
                             <ul>
                                 <li><a href="">Royal Beauty</a></li>
@@ -83,7 +83,7 @@ if (isset($_POST['submit'])) {
                 <li><a href="login.php">Join Us</a></li>
                 <li>
 
-                <a href="logout.php">Logout</a>
+                    <a href="logout.php">Logout</a>
                 </li>
             </ul>
         </nav>

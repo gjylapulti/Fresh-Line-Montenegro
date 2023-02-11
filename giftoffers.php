@@ -1,4 +1,4 @@
-<?php include('config/constants.php'); ?>
+<?php include('config/constants.php') ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/facecare.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
-    <title>Face Care</title>
+    <title>Gift Offers</title>
 </head>
 
 <body>
@@ -29,7 +29,7 @@
                 <li><a href="haircare.php">Hair Care</a></li>
                 <li><a href="">Body Care</a>
                     <ul>
-                        <li><a href="giftoffers.php">Gift Offers & Promo Sets</a></li>
+                        <li><a href="">Gift Offers & Promo Sets</a></li>
                         <li><a href="">Collections</a>
                             <ul>
                                 <li><a href="">Royal Beauty</a></li>
@@ -50,13 +50,17 @@
     </header>
 
     <div class="container">
+
+
+
         <div class="products">
+
 
             <?php
 
-            //getting products from database in the face category
+            //getting products from database in the hair category
             
-            $sql2 = "SELECT * FROM tbl_product WHERE category_id=16 LIMIT 6";
+            $sql2 = "SELECT * FROM tbl_product WHERE category_id=14 AND id!=2 LIMIT 3";
 
             $res2 = mysqli_query($conn, $sql2);
 
@@ -119,6 +123,8 @@
             }
 
             ?>
+
+
 
 
 

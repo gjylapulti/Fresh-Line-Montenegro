@@ -1,13 +1,11 @@
 <?php include('config/constants.php');
 
 /*if (!isset($_SESSION)) {
-  session_start();
+session_start();
 }
-
 $user_id = $_SESSION['user_id'];
-
 if (!isset($user_id)) {
-  header('location:login.php');
+header('location:login.php');
 }*/
 
 ?>
@@ -39,7 +37,7 @@ if (!isset($user_id)) {
         <li><a href="haircare.php">Hair Care</a></li>
         <li><a href="">Body Care</a>
           <ul>
-            <li><a href="">Gift Offers & Promo Sets</a></li>
+            <li><a href="giftoffers.php">Gift Offers & Promo Sets</a></li>
             <li><a href="">Collections</a>
               <ul>
                 <li><a href="">Royal Beauty</a></li>
@@ -64,9 +62,8 @@ if (!isset($user_id)) {
     <div class="content">
       <h3>fresh line montenegro</h3>
       <span> natural cosmetics from Greece </span>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae laborum ut minus corrupti dolorum dolore
-        assumenda iste voluptate dolorem pariatur.</p>
-      <a href="#" class="btn">shop now</a>
+      <p>Explore our premium FRESH products made especially for you from the treasures of nature.</p>
+
     </div>
 
   </section>
