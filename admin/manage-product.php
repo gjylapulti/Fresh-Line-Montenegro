@@ -9,6 +9,16 @@
         <br /><br /><br />
 
         <?php
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+
+        $admin_id = $_SESSION['admin_id'];
+
+        if (!isset($admin_id)) {
+            header('location:../login.php');
+        }
+
         if (isset($_SESSION['add'])) {
             echo $_SESSION['add'];
             unset($_SESSION['add']);

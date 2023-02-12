@@ -1,7 +1,16 @@
 <?php
 include('partials/menu.php');
+if (!isset($_SESSION)) {
+    session_start();
+}
 
-//getting products from database in the hair category
+$admin_id = $_SESSION['admin_id'];
+
+if (!isset($admin_id)) {
+    header('location:../login.php');
+}
+
+//getting messages from db
 
 $sql2 = "SELECT * FROM message";
 
@@ -11,7 +20,7 @@ $count2 = mysqli_num_rows($res2);
 
 $sn = 0;
 if ($count2 > 0) {
-    //we have products
+    //we have messages
     while ($row = mysqli_fetch_assoc($res2)) {
         $name = $row['name'];
         $email = $row['email'];

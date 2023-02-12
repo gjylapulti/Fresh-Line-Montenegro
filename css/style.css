@@ -456,3 +456,19 @@ footer{
   float: none;
 }
 
+@media only screen and (max-width:768px){
+
+  .categories{
+      padding: 20% 0;
+  }
+  h2{
+      margin-bottom: 10%;
+  }
+  .box-3{
+      width: 100%;
+      margin: 4% auto;
+  }
+
+}
+
+
